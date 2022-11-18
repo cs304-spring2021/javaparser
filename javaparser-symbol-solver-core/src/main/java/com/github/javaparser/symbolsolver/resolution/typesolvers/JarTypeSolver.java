@@ -35,6 +35,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -164,7 +165,7 @@ public class JarTypeSolver implements TypeSolver {
      * @throws IOException If an I/O exception occurs while creating the temporary file.
      */
     private File dumpToTempFile(InputStream inputStream) throws IOException {
-        File tempFile = File.createTempFile("jar_file_from_input_stream", ".jar");
+        File tempFile = Files.createTempFile("jar_file_from_input_stream", ".jar").toFile();
         tempFile.deleteOnExit();
 
         byte[] buffer = new byte[8 * 1024];
